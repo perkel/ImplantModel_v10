@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate as integ
 import scipy.special as spec
+import remove_nans as r_nans
 
 
 def goldwyn_beta(eps, k2, rs, re, n):
@@ -57,7 +58,7 @@ radius = 1.0  # cylinder radius
 res_int = 70.0  # internal resistivity
 res_ext = 250.0  # external resistivity
 
-output_filename = '20March2023_MedResolution_Rext250.dat'
+output_filename = '11June2023_MedResolution_Rext250.dat'
 
 pr = cProfile.Profile()
 
@@ -82,7 +83,7 @@ fp = {'model': 'cylinder_3d', 'fieldtype': 'Voltage_Activation', 'evaltype': 'SG
       #           1.4, 1.6, 1.8, 2.0, 2.4, 2.8, 3.2, 3.6, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0,
       #           8.5, 9.0, 9.5, 10.0, 15, 20.0, 25.0, 30.0, 35.0, 40),
       # Very low resolution for debugging
-      #  'zEval': (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0),
+      # 'zEval': (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0),
       'mMax': 47, 'intStart': 1e-12, 'intEnd': 500.0, 'reval': 1.3,
       'ITOL': 1e-6, 'runDate': 'rundate', 'runOutFile': 'savefile', 'run_duration': 0.0}
 
@@ -138,7 +139,6 @@ for i, rElec in enumerate(rElecRange):
         activationVals[i, m] = (transVPrime[n_yeval - 1])  # Value in center
         if np.isnan(activationVals[i, m]):
             print('nan value for i == ', i, " and m == ", m)
-            #  TODO: handle nans by cubic spline interpolation
 
 pr.disable()  # stop the profiler
 
@@ -157,8 +157,11 @@ combined_data.close()
 
 nan_locs = np.argwhere(np.isnan(activationVals))
 if nan_locs.size != 0:
-    print('WARNING: There are NaN values in the act_vals array at locations: ', nan_locs)
-    print('It is recommended that you run remove_nans.py on this data table.')
+    print('WARNING: There were NaN values in the act_vals array at locations: ', nan_locs)
+    r_nans.remove_nans(fp['runOutFile'])
+    print('These have been replaced by interpolated values in a new file with no_nans appended to the filename.')
+else:
+    print('Complete: No nans are in the file.')
 
 if if_plot:
     # Some plots that might be helpful
