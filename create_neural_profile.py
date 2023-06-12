@@ -2,7 +2,7 @@
 # function [neural_out,nsurvival] = cimodel_createneuralprofile(active_profile,rpos_vals)
 # Create one or more neural profiles, i.e. the final neural "contribution"
 # across an array of neural clusters, based on unscaled activation profiles. Called by
-# CIMODEL_THRFUNCTION, but can also be evoked separately.
+# thrFunction.py, but can also be evoked separately.
 # 'active_profile' is of size n_z (#z-axis points) x nStim (#of stimuli to simulate).
 # It should be already scaled by the applied current, but not transformed by the sidelobe
 # ratio or to an absolute value. The activation sensitivity value, contained
@@ -47,8 +47,7 @@ def create_neural_profile(active_profile, rpos_vals):
         # treat non-viable neurons depending on the desired algorithm
         if rpos_vals['neurons']['rule'] == 'proportional':
             try:
-
-                #  The lines commented out here are the original sigmoid activation function
+                #  The lines commented out here are the original sigmoid activation function from Goldwyn et al. (2010)
                 #  The problem is that for input of exactly zero, the output is positive, which can cause
                 #  major problems in some cases.
                 #  tempval1 = active_profile[:]-act_ctr
