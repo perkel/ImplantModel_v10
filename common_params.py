@@ -49,7 +49,7 @@ NSURVINIT = 1.0
 # scenarios = ['RampRpos2SGradual80']
 # scenarios = ['RampRposSOneHoleGradual80']
 
-scenarios = ['Gradual80R00', 'RampRposS80', 'RampRposSGradual80']  # for paper figures
+# scenarios = ['Gradual80R00', 'RampRposS80', 'RampRposSGradual80']  # for paper figures
 # scenarios = ['Gradual80R00']
 # scenarios = ['ExtremeHole']
 # scenarios = ['RampRposS80']
@@ -57,14 +57,16 @@ scenarios = ['Gradual80R00', 'RampRposS80', 'RampRposSGradual80']  # for paper f
 # scenarios = ['CustomForECAPFigure']
 
 # Actual subject data. For inverse model only
-# scenarios = ['S42', 'S43']  # paper "good fit" examples
+scenarios = ['S42', 'S43']  # paper "good fit" examples
 # scenarios = ['S29', 'S56']  # paper "poor fit" examples
 # all subjects with CT data
 # scenarios = ['S22', 'S27', 'S29', 'S38', 'S40', 'S41', 'S42', 'S43', 'S46', 'S47', 'S49R', 'S50', 'S52', 'S53', 'S54',
 #              'S55', 'S56', 'S57']
 
 # File locations
-FWDOUTPUTDIR = 'FWD_OUTPUT/' + ACTR_TEXT + STD_TEXT + TARG_TEXT
-INVOUTPUTDIR = 'INV_OUTPUT/' + ACTR_TEXT + STD_TEXT + TARG_TEXT
+FWD_OUT_PRFIX = 'FWD_OUTPUT/'
+FWDOUTPUTDIR = FWD_OUT_PRFIX + ACTR_TEXT + STD_TEXT + TARG_TEXT
+INV_OUT_PRFIX = 'INV_OUTPUT/'
+INVOUTPUTDIR = INV_OUT_PRFIX + ACTR_TEXT + STD_TEXT + TARG_TEXT
 
 FIELDTABLE = '20March2023_MedResolution_Rext250_nonans.dat'
