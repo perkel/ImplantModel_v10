@@ -9,9 +9,12 @@ from matplotlib.font_manager import findfont, FontProperties
 def PlotNeuronActivation():
     font = findfont(FontProperties(family=['sans-serif']))
     print('font is ', font)
-    ACTIVATION_FILE = FWDOUTPUTDIR + 'neuronact_' + STD_TEXT + '.npy'
+    ACTIVATION_FILE = FWDOUTPUTDIR + 'neuronact_' + STD_TEXT + '.npz'
     print("Activation file: ", ACTIVATION_FILE)
-    [survVals, rposVals, neuronact] = np.load(ACTIVATION_FILE, allow_pickle=True)
+    data = np.load(ACTIVATION_FILE, allow_pickle=True)
+    survVals = data['arr_0']
+    rposVals = data['arr_1']
+    neuronact = data['arr_2']
 
     hires = '_hi_res.npy'
     descrip = "surv_" + str(np.min(survVals)) + "_" + str(np.max(survVals)) + "_rpos_" + \
