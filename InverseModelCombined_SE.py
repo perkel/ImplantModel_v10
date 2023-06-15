@@ -36,7 +36,7 @@ fit_mode = 'combined'  # Which variable(s) to fit? Alternatives are 'combined', 
 ifPlot = True  # Whether to plot output at end
 unsupervised = True  # Makes and saves summary plots but does not display them and wait for user input before proceeding
 ifPlotGuessContours = False  # Option to plot initial guesses for parameters given to the fitting algorithm
-use_fwd_model = False  # If True, use output from the forward model. If False, use subject data
+use_fwd_model = True  # If True, use output from the forward model. If False, use subject data
 fit_tol = 0.01  # Fit tolearnce for subject fits
 
 
