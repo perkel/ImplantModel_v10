@@ -49,7 +49,7 @@ NSURVINIT = 1.0
 # scenarios = ['RampRpos2SGradual80']
 # scenarios = ['RampRposSOneHoleGradual80']
 
-# scenarios = ['Gradual80R00', 'RampRposS80', 'RampRposSGradual80']  # for paper figures
+scenarios = ['Gradual80R00', 'RampRposS80', 'RampRposSGradual80']  # for paper figures
 # scenarios = ['Gradual80R00']
 # scenarios = ['ExtremeHole']
 # scenarios = ['RampRposS80']
@@ -57,7 +57,7 @@ NSURVINIT = 1.0
 # scenarios = ['CustomForECAPFigure']
 
 # Actual subject data. For inverse model only
-scenarios = ['S42', 'S43']  # paper "good fit" examples
+# scenarios = ['S42', 'S43']  # paper "good fit" examples
 # scenarios = ['S29', 'S56']  # paper "poor fit" examples
 # all subjects with CT data
 # scenarios = ['S22', 'S27', 'S29', 'S38', 'S40', 'S41', 'S42', 'S43', 'S46', 'S47', 'S49R', 'S50', 'S52', 'S53', 'S54',
