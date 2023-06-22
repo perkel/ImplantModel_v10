@@ -11,6 +11,7 @@ import scipy.stats as stats
 label_ypos = 0.98
 
 # Reads a summary file, and tests whether average rpos error is less than chance based on shuffling
+# You need to run the inverse model for all subjects before making this figure
 summary_file_name = INVOUTPUTDIR + 'summary_inverse_fit_results.npy'
 
 [scenarios, rpos_summary] = np.load(summary_file_name, allow_pickle=True)
