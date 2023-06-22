@@ -94,8 +94,6 @@ def fig_2D_contour():
 
     fig, axs = plt.subplots(2, 2, figsize=(8, 8))
     fig.tight_layout(pad=3, w_pad=2, h_pad=2.0)
-    #     CS3 = axs[0].contourf(XN, YN, znew_mp, np.arange(all_min, all_max, (all_max-all_min)/n_levels))
-    # without interpolation
     if filled_contours:
         CS3 = axs[0, 0].contourf(1 - rpos_vals, surv_vals, mono_thr,
                                  np.arange(all_min, all_max, (all_max - all_min) / n_levels),
@@ -118,7 +116,6 @@ def fig_2D_contour():
         axs[0, 0].text(1 - low_rpos_val + lab_shift, low_surv_val, labels[3], horizontalalignment='left',
                        verticalalignment='bottom')
         axs[0, 0].plot([1 - high_rpos_val], [high_surv_val], 'sk', markersize=20)
-        # axs[0, 0].text(-0.5, 1.0, 'A', fontsize=20)
         axs[0, 0].plot([np.min(1 - rpos_vals), np.max(1 - rpos_vals)], [high_surv_val, high_surv_val], color='blue')
         axs[0, 0].plot([np.min(1 - rpos_vals), np.max(1 - rpos_vals)], [low_surv_val, low_surv_val], color='blue',
                        linestyle='dashed')
@@ -177,9 +174,6 @@ def fig_2D_contour():
                        verticalalignment='bottom')
         axs[0, 0].text(1 - low_rpos_val + lab_shift, low_surv_val, labels[3], horizontalalignment='left',
                        verticalalignment='bottom')
-        # axs[0, 0].plot([1 - high_rpos_val], [high_surv_val], markerfacecolor='w', markeredgecolor='b',
-        #                marker=(4, 0, 45), markersize=15)
-        # axs[0, 0].text(-0.5, 1.0, 'A', fontsize=20)
         axs[0, 0].plot([np.min(1 - rpos_vals), np.max(1 - rpos_vals)], [high_surv_val, high_surv_val], color='blue')
         axs[0, 0].plot([np.min(1 - rpos_vals), np.max(1 - rpos_vals)], [low_surv_val, low_surv_val], color='blue',
                        linestyle='dashed')
@@ -236,16 +230,6 @@ def fig_2D_contour():
     axs[1, 1].axes.set_ylim([20, 80])
 
     plt.savefig('Fig_2D_contour.eps', format='eps')
-
-    # Second figure to get a reasonable colorbar without squishing a contour plot
-    fig3, axs3 = plt.subplots(1, 2)
-    CS5 = axs3[0].contourf(1 - rpos_vals, surv_vals, mono_thr,
-                           np.arange(all_min, all_max, (all_max - all_min) / n_levels),
-                           cmap='viridis', extend='both')
-    # Make colorbar
-    norm = mpl.colors.Normalize(vmin=20, vmax=80)
-    cbar = fig.colorbar(CS5, ax=axs3, ticks=range(25, 80, 25))
-    plt.savefig('Fig_2D_contour_colorbar.eps', format='eps')
 
     figrows = 2
     figcols = 2
@@ -307,32 +291,6 @@ def fig_2D_contour():
         the_ax.text(0.1, 0.8, labels[i], fontsize=16)
 
     plt.savefig('Fig5_contour_examples.pdf', format='pdf')
-    # fig3, ax4 = plt.subplots()
-    # ax4 = plt.contour(1-rpos_vals, surv_vals, mono_thr, [mono_thr[low_surv_idx, high_rpos_idx]],
-    #                   colors='green')
-    # ax4.axes.set_xlabel('Electrode distance (mm)')
-    # ax4.axes.set_ylabel('Fractional neuronal density')
-    # ax5 = plt.contour(1-rpos_vals, surv_vals, tripol_thr, [tripol_thr[low_surv_idx, high_rpos_idx]],
-    #                   colors='red')
-    # mpcontour = ax4.allsegs[0]
-    # tpcontour = ax5.allsegs[0]
-    # nmp = len(mpcontour[0])
-    # ntp = len(tpcontour[0])
-    # mpx = np.zeros(nmp)
-    # mpy = np.zeros(nmp)
-    # tpx = np.zeros(ntp)
-    # tpy = np.zeros(ntp)
-    #
-    # for j in range(0, nmp):  # Should be able to do this without for loops
-    #     mpx[j] = mpcontour[0][j][0]
-    #     mpy[j] = mpcontour[0][j][1]
-    #
-    # for j in range(0, ntp):
-    #     tpx[j] = tpcontour[0][j][0]
-    #     tpy[j] = tpcontour[0][j][1]
-    #
-    # x, y = intsec.intersection(mpx, mpy, tpx, tpy)  # find intersection(s)
-    # plt.plot(x[1], y[1], 'x', color='black', markersize='12')
 
     if map_unique_solutions:
         n_sols = np.zeros((nrpos, nsurv), dtype=int)
@@ -366,18 +324,12 @@ def fig_2D_contour():
                     tpx[j] = tpcontour[0][j][0]
                     tpy[j] = tpcontour[0][j][1]
 
-                # x, y = intsec.intersection(mpx, mpy, tpx, tpy)  # find intersection(s)
-
                 # try finding intersection using Shapely class
                 if len(mpcontour[0]) == 1 or len(tpcontour[0]) == 1:
                     n_sols[ridx, sidx] = 0
                 else:
                     ('len contours: ', len(mpcontour[0]), len(tpcontour[0]))
                     line1 = shap.LineString(mpcontour[0])
-                    # if len(tpcontour[0]) == 0:
-                    #     print('tpcontour[0] is ', tpcontour[0])
-                    # elif len(tpcontour[0] == 1):
-                    #     print('tpcontour[0] is ', tpcontour[0])
                     line2 = shap.LineString(tpcontour[0])
                     x = shap.intersection(line1, line2)
 
@@ -387,12 +339,6 @@ def fig_2D_contour():
                         n_sols[ridx, sidx] = 1
 
                     elif x.geom_type == 'MultiPoint':
-                        # print('sidx, ridx, x: ', sidx, ridx, x, y)
-                        # fig_ex, ax_ex = plt.subplots()
-                        # ax_ex1 = plt.contour(rpos_vals, surv_vals, mono_thr, [mono_thr[sidx, ridx]], colors='green')
-                        # ax_ex2 = plt.contour(rpos_vals, surv_vals, tripol_thr, [tripol_thr[sidx, ridx]], colors='red')
-                        # print('len x is ', len(x))
-                        # plt.show()
                         print('Multipoint at sidx = ', sidx, ' and ridx: ', ridx, ' : ', x)
                         n_sols[ridx, sidx] = 2
                     else:
