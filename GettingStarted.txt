@@ -1,9 +1,14 @@
 Getting started with this cochlear implant model
 
-1.	Download and install PyCharm Community Edition.
-2.	Create a new Project
-3.	Add python packages to the Project: numpy, scipy, lmfit, shapely, matplotlib, lmfit, Minimizer
-4.	Place relevant ImplantModel files in the Project or pull the repository from github
+1.	Download and install PyCharm Community Edition. If  you are using a different python environment, you'll need
+    to alter some of these steps.
+2.	Create a new PyCharm Project
+3.	Add python packages to the Project: numpy, scipy, lmfit, shapely, matplotlib, lmfit, Minimizer, seaborn
+4.	Place relevant ImplantModel files in the Project or pull the repository from github. These include:
+    voltage_calc.py, remove_nans.py, FwdModel4.py, common_params.py, set_scenario.py, create_neural_profile.py,
+    cylinder3d_makeprofile.py, FwdModel4_2D.py, getclosest.py, getThresholds.py, intersection.py,
+    InversModelCombined.py, load_fwd_csv_data.py, PlotInverseResults.py, PlotNeuronActivation.py,
+    survFull,py, thrFunction.py, subject_data.py.
 5.	Add a run configuration to the Project to run voltage_calc.py. This script precalculates the table of voltages and
     activation functions used by the rest of the model.
 6.	Edit voltage_calc.py. Main parameters to review/edit: radius, res_int, res_ext, zEval, output_filename and
@@ -17,7 +22,7 @@ Getting started with this cochlear implant model
     Add a run configuration to the Project to run FwdModel4_2D.py. Then run it.
 10.	The inverse model can be run in either of two modes: using a known scenario of electrode position and
     neuronal density or based on a subject's measured thresholds. This choice is made on line 39 of
-    InverseModelCombined. Set the variable "use_fwd_model" to True to use a known scenario or to False to use subject
+    InverseModelCombined.py. Set the variable "use_fwd_model" to True to use a known scenario or to False to use subject
     data. Set the variable SCENARIOS in common_params to indicate which scenario(s) or subject(s) you wish to study.
 11. Run the inverse model. Add a run configuration to the Project to run InverseModelCombined.py.
     While it is running you will see the average threshold error in dB scroll in the console.
