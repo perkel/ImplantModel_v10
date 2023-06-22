@@ -155,7 +155,7 @@ def plot_inverse_results(use_fwd_model, txt_string, unsupervised):
 
 if __name__ == '__main__':
     use_fwd_model = False
-    txt_string = ['S40', 'S42']  # 2 subjects to fit side by side Fig 7 of the paper
+    # txt_string = ['S40', 'S42']  # 2 subjects to fit side by side Fig 7 of the paper
     txt_string = ['S29', 'S56']  # 2 subjects to fit side by side Fig 8 of the paper
     unsupervised = False
     plot_inverse_results(use_fwd_model, txt_string, unsupervised)
