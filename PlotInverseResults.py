@@ -103,9 +103,9 @@ def plot_inverse_results(use_fwd_model, txt_string, unsupervised):
 
 
 if __name__ == '__main__':
-    use_fwd_model = False
+    use_fwd_model = True
     # txt_string = scenarios[0]
-    txt_string = 'S40'
-    # txt_string = 'RampRposSGradual80'
+    #txt_string = 'S40'
+    txt_string = 'RampRposSGradual80'
     unsupervised = False
     plot_inverse_results(use_fwd_model, txt_string, unsupervised)
