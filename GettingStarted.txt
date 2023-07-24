@@ -3,7 +3,7 @@ Getting started with this cochlear implant model
 1.	Download and install PyCharm Community Edition. If  you are using a different python environment, you'll need
     to alter some of these steps.
 2.	Create a new PyCharm Project
-3.	Add python packages to the Project: numpy, scipy, lmfit, shapely, matplotlib, lmfit, Minimizer, seaborn
+3.	Add python packages to the Project: numpy, scipy, lmfit, shapely, matplotlib, Minimizer, seaborn
 4.	Place relevant ImplantModel files in the Project or pull the repository from github. These include:
     voltage_calc.py, remove_nans.py, FwdModel4.py, common_params.py, set_scenario.py, create_neural_profile.py,
     cylinder3d_makeprofile.py, FwdModel4_2D.py, getclosest.py, getThresholds.py, intersection.py,
